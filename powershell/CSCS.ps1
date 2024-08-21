@@ -1,4 +1,4 @@
-﻿# Jason's Public-PC Setup Script - modified 20231005
+﻿# Change School Computer Settings - modified 20240821
 #
 # Currently:
 # - taskbar
@@ -86,7 +86,7 @@ Add-Type -name Win32 -NameSpace System '
 # end mouse stuff
 
 # 88-160: volume stuff - mute volume
-# code stolen/modified from:
+# C# code stolen/modified from:
 # - https://stackoverflow.com/questions/21355891/change-audio-level-from-powershell
 # - https://stackoverflow.com/questions/255419/how-can-i-mute-unmute-my-sound-from-powershell
 Add-Type -TypeDefinition @'
