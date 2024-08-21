@@ -1,0 +1,2 @@
+SET MOZ_PROFILER_STARTUP=1
+PortableApps\FirefoxPortable\FirefoxPortable.exe
