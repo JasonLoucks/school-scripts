@@ -22,9 +22,27 @@
 #   - should be good, but just in case, https://adamtheautomator.com/how-to-sign-powershell-script/
 #
 # To do:
+# - refactor to improve readability/portability
+# - add logging
 # - set firefox portable as default browser
 # - add stuff to context menus (open with etc.)
 # - add stuff to taskbar: firefox, n++, texstudio
+# - add run confirmation:
+#   - $answer = Read-Host "Do you want to run the script? (y/n)"
+#     
+#     if ( $answer -eq "y" -or $answer -eq "Y" )
+#     {
+#         # original code goes here
+#     }
+#     else
+#     {
+#         Write-Host "Exiting script."
+#     }
+#     
+#     $answer = Read-Host "Do you want to run the script? (y/n)"
+
+# XX-XX: setup stuff - get the script's drive letter and remove the trailing backslash
+$driveLetter = [System.IO.Path]::GetPathRoot( $PSScriptRoot ).TrimEnd('\')
 
 # 29-35: taskbar stuff - hide search, task view, widgets, and chat; align taskbar left
 Set-ItemProperty -Path HKCU:\Software\Microsoft\Windows\CurrentVersion\Search            -Name SearchBoxTaskbarMode -Value 0 -Type DWord -Force # hide search
@@ -185,7 +203,7 @@ public class Audio
 
 $keyPath = "HKCU:\Software\Classes\Applications\FirefoxPortable.exe\shell\open\command"
 $keyName = "(Default)"
-$keyValue = "`"$PSScriptRoot\..\..\PortableApps\FirefoxPortable\FirefoxPortable.exe`" `"%1`"".replace('\\','\')
+$keyValue = "`"$driveLetter\PortableApps\FirefoxPortable\FirefoxPortable.exe`" `"%1`"".replace('\\','\')
 
 If ( !( Test-Path -path $keyPath ) )
 {
@@ -203,7 +221,7 @@ $wsh.SendKeys('{NUMLOCK}')
 
 # 204-207: misc stuff
 Stop-Process -name explorer –force # need to restart explorer for explorer settings to take effect. everything else seems to work
-Invoke-Item $PSScriptRoot\..\.. # open flash drive folder
+Invoke-Item $driveLetter # open flash drive folder
 # end misc stuff
 
 # SIG # Begin signature block
