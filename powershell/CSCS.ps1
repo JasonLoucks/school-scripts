@@ -1,4 +1,4 @@
-﻿# Change School Computer Settings - modified 20240821
+# Change School Computer Settings - modified 20240827
 #
 # Currently:
 # - taskbar
@@ -220,8 +220,8 @@ $wsh.SendKeys('{NUMLOCK}')
 # end numlock stuff
 
 # 204-207: misc stuff
-Stop-Process -name explorer –force # need to restart explorer for explorer settings to take effect. everything else seems to work
-Invoke-Item $driveLetter # open flash drive folder
+Stop-Process -name explorer -force # need to restart explorer for explorer settings to take effect. everything else seems to work
+Invoke-Item $driveLetter\ # open flash drive folder
 # end misc stuff
 
 # SIG # Begin signature block
